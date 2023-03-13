@@ -11,12 +11,18 @@ source:
 
 build:
   number: 0
-
-requirements:
   entry_points:
     - glad = glad.__main__:main
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - pip
+    - python >=3.6
+    - setuptools_scm
+  run:
+    - jinja2
 
 test:
   imports:
