@@ -1,4 +1,4 @@
-{% set name = "glad" %}
+{% set name = "glad2" %}
 {% set version = "2.0.4" %}
 
 package:
@@ -11,24 +11,18 @@ source:
 
 build:
   number: 0
-  run_exports:
-    - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
 requirements:
-  build:
-    - cmake
-    - {{ compiler('c') }}
-    - ninja
-    - python
+  entry_points:
+    - glad = glad.__main__:main
+  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 test:
+  imports:
+    - glad
   commands:
-    - test -f ${PREFIX}/include/glad/glad.h  # [not win]
-    - test -f ${PREFIX}/lib/libglad.so  # [linux]
-    - test -f ${PREFIX}/lib/libglad.dylib  # [osx]
-    - if not exist %PREFIX%\\Library\\include\\glad\\glad.h exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\lib\\glad.lib exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\bin\\glad.dll exit 1  # [win]
+    - glad --help
 
 about:
   home: https://github.com/Dav1dde/glad
