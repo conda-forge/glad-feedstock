@@ -43,7 +43,7 @@ outputs:
 
     files:
       - lib/cmake/Glad/GladConfig.cmake
-      - Library/cmake/Glad/GladConfig.cmake
+      - Library/lib/cmake/Glad/GladConfig.cmake
 
     about:
       home: https://github.com/Dav1dde/glad
