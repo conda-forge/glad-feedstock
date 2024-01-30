@@ -41,6 +41,8 @@ outputs:
     build:
       noarch: python
 
+    script: install_cmake.sh
+
     files:
       - lib/cmake/Glad/GladConfig.cmake
       - Library/lib/cmake/Glad/GladConfig.cmake
