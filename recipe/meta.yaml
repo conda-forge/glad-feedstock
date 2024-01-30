@@ -38,13 +38,13 @@ outputs:
         - glad --help
 
   - name: glad2-cmake
-    script: install_cmake.sh  # [unix]
-    script: install_cmake.bat # [win]
+    script: install_cmake.sh   # [unix]
+    script: install_cmake.bat  # [win]
 
     test:
       commands:
-        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                      # [unix]
-        - if not exist %LIBRARY_LIB%\\lib\\cmake\\Glad\GladConfig.cmake exit 1 # [win]
+        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                       # [unix]
+        - if not exist %LIBRARY_LIB%\\lib\\cmake\\Glad\GladConfig.cmake exit 1  # [win]
 
     about:
       summary: CMake package for Glad.
