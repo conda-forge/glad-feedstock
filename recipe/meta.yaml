@@ -24,9 +24,9 @@ outputs:
     requirements:
       host:
         - pip
-        - python
+        - python >=3.8
       run:
-        - python
+        - python >=3.8
         - jinja2
       run_constrained:
         - {{ pin_subpackage('glad2-cmake', exact=True) }}
