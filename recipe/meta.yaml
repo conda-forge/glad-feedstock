@@ -22,14 +22,11 @@ outputs:
       script: python -m pip install . --no-deps -vv
 
     requirements:
-      build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - pip
-        - python >=3.6
+        - python
       run:
-        - python >=3.6
+        - python
         - jinja2
       run_constrained:
         - {{ pin_subpackage('glad2-cmake', exact=True) }}
@@ -41,20 +38,17 @@ outputs:
         - glad --help
 
   - name: glad2-cmake
-    script: install_cmake.sh   # [unix]
-    script: install_cmake.bat  # [win]
+    build:
+      noarch: python
 
-    requirements:
-      # dummy build env to avoid EnvironmentLocationNotFound on win
-      build:     # [win]
-        - cmake  # [win]
-
-    test:
-      commands:
-        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                # [unix]
-        - if not exist %LIBRARY_LIB%\cmake\Glad\GladConfig.cmake exit 1  # [win]
+    files:
+      - lib/cmake/Glad/GladConfig.cmake
+      - Library/cmake/Glad/GladConfig.cmake
 
     about:
+      home: https://github.com/Dav1dde/glad
+      license: MIT
+      license_file: LICENSE
       summary: CMake package for Glad.
 
 about:
