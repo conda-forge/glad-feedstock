@@ -41,6 +41,11 @@ outputs:
     script: install_cmake.sh   # [unix]
     script: install_cmake.bat  # [win]
 
+    requirements:
+      # dummy build env to avoid EnvironmentLocationNotFound on win
+      build:                # [win]
+        - cmake             # [win]
+
     test:
       commands:
         - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                       # [unix]
