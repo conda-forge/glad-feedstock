@@ -47,6 +47,11 @@ outputs:
       - lib/cmake/Glad/GladConfig.cmake
       - Library/lib/cmake/Glad/GladConfig.cmake
 
+    test:
+      commands:
+        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake
+        - test -f $PREFIX/Library/lib/cmake/Glad/GladConfig.cmake
+
     about:
       home: https://github.com/Dav1dde/glad
       license: MIT
