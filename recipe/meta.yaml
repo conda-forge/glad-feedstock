@@ -47,6 +47,9 @@ outputs:
       - lib/cmake/Glad/GladConfig.cmake
       - Library/lib/cmake/Glad/GladConfig.cmake
 
+    test:
+      script: test_cmake.sh
+
     about:
       home: https://github.com/Dav1dde/glad
       license: MIT
