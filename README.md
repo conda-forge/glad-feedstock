@@ -157,5 +157,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@cNoNim](https://github.com/cNoNim/)
 * [@traversaro](https://github.com/traversaro/)
 
