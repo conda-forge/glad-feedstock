@@ -59,7 +59,14 @@ outputs:
       home: https://github.com/Dav1dde/glad
       license: MIT
       license_file: LICENSE
-      summary: CMake package for Glad.
+      summary: CMake package for glad2.
+      description: |
+        Example of use:
+        ```cmake
+        find_package(Glad CONFIG REQUIRED)
+        glad_add_library(glad_gl_core_mx_33 REPRODUCIBLE MX API gl:core=3.3)
+        # and link glad_gl_core_mx_33 to target
+        ```
 
 about:
   home: https://github.com/Dav1dde/glad
