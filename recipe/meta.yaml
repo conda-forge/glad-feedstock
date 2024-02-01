@@ -8,10 +8,11 @@ source:
   url: https://github.com/Dav1dde/glad/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 02629644c242dcc27c58222bd2c001d5e2f3765dbbcfd796542308bddebab401
   patches:
-    - 0001-cmake.patch
+    - 0001-findpython.patch
+    - 0002-cmake.patch
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: glad2
