@@ -20,7 +20,14 @@ Home: https://github.com/Dav1dde/glad
 
 Package license: MIT
 
-Summary: CMake package for Glad.
+Summary: CMake package for glad2.
+
+Example of use:
+```cmake
+find_package(Glad CONFIG REQUIRED)
+glad_add_library(glad_gl_core_mx_33 REPRODUCIBLE MX API gl:core=3.3)
+```
+
 
 Current build status
 ====================
