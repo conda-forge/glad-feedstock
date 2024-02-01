@@ -17,6 +17,7 @@ outputs:
   - name: glad2
     build:
       noarch: python
+      skip: True  # [not linux64]
       entry_points:
         - glad = glad.__main__:main
       script: python -m pip install . --no-deps -vv
@@ -38,21 +39,18 @@ outputs:
         - glad --help
 
   - name: glad2-cmake
-    build:
-      noarch: python
+    requirements:
+      # dummy build env to avoid EnvironmentLocationNotFound on win
+      build:     # [win]
+        - cmake  # [win]
 
-    script: install_cmake.sh
-
-    files:
-      - lib/cmake/Glad/GladConfig.cmake
-      - Library/lib/cmake/Glad/GladConfig.cmake
+    script: install_cmake.sh   # [unix]
+    script: install_cmake.bat  # [win]
 
     test:
-      requires:
-        - python >=3.8
       commands:
-        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake
-        - test -f $PREFIX/Library/lib/cmake/Glad/GladConfig.cmake
+        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                # [unix]
+        - if not exist %LIBRARY_LIB%\cmake\Glad\GladConfig.cmake exit 1  # [win]
 
     about:
       home: https://github.com/Dav1dde/glad
