@@ -52,9 +52,12 @@ outputs:
     script: install_cmake.bat  # [win]
 
     test:
+      requires:
+        - cmake
+      source_files:
+        - CMakeLists.txt
       commands:
-        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                   # [unix]
-        - if not exist %LIBRARY_LIB%\\cmake\\Glad\\GladConfig.cmake exit 1  # [win]
+        - cmake -B build
 
     about:
       home: https://github.com/Dav1dde/glad
