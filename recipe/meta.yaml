@@ -39,6 +39,9 @@ outputs:
         - glad --help
 
   - name: glad2-cmake
+    build:
+      skip: False
+
     requirements:
       # dummy build env to avoid EnvironmentLocationNotFound on win
       build:     # [win]
@@ -49,8 +52,8 @@ outputs:
 
     test:
       commands:
-        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                # [unix]
-        - if not exist %LIBRARY_LIB%\cmake\Glad\GladConfig.cmake exit 1  # [win]
+        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                   # [unix]
+        - if not exist %LIBRARY_LIB%\\cmake\\Glad\\GladConfig.cmake exit 1  # [win]
 
     about:
       home: https://github.com/Dav1dde/glad
