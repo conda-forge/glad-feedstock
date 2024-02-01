@@ -3,21 +3,82 @@ About glad2-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/glad-feedstock/blob/main/LICENSE.txt)
 
+
+About glad2
+-----------
+
 Home: https://github.com/Dav1dde/glad
 
 Package license: MIT
 
 Summary: GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs.
 
+About glad2-cmake
+-----------------
+
+Home: https://github.com/Dav1dde/glad
+
+Package license: MIT
+
+Summary: CMake package for glad2.
+
+Example of use:
+```cmake
+find_package(Glad CONFIG REQUIRED)
+glad_add_library(glad_gl_core_mx_33 REPRODUCIBLE MX API gl:core=3.3)
+```
+and link `glad_gl_core_mx_33` to target
+
+
 Current build status
 ====================
 
 
-<table><tr><td>All platforms:</td>
+<table>
+    
+  <tr>
+    <td>Azure</td>
     <td>
-      <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16194&branchName=main">
-        <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/glad-feedstock?branchName=main">
-      </a>
+      <details>
+        <summary>
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16194&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/glad-feedstock?branchName=main">
+          </a>
+        </summary>
+        <table>
+          <thead><tr><th>Variant</th><th>Status</th></tr></thead>
+          <tbody><tr>
+              <td>linux_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16194&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/glad-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16194&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/glad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16194&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/glad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16194&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/glad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
     </td>
   </tr>
 </table>
@@ -28,6 +89,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-glad2-green.svg)](https://anaconda.org/conda-forge/glad2) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/glad2.svg)](https://anaconda.org/conda-forge/glad2) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/glad2.svg)](https://anaconda.org/conda-forge/glad2) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/glad2.svg)](https://anaconda.org/conda-forge/glad2) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-glad2--cmake-green.svg)](https://anaconda.org/conda-forge/glad2-cmake) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/glad2-cmake.svg)](https://anaconda.org/conda-forge/glad2-cmake) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/glad2-cmake.svg)](https://anaconda.org/conda-forge/glad2-cmake) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/glad2-cmake.svg)](https://anaconda.org/conda-forge/glad2-cmake) |
 
 Installing glad2
 ================
@@ -39,16 +101,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `glad2` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `glad2, glad2-cmake` can be installed with `conda`:
 
 ```
-conda install glad2
+conda install glad2 glad2-cmake
 ```
 
 or with `mamba`:
 
 ```
-mamba install glad2
+mamba install glad2 glad2-cmake
 ```
 
 It is possible to list all of the versions of `glad2` available on your platform with `conda`:
@@ -95,7 +157,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance
@@ -143,5 +205,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@cNoNim](https://github.com/cNoNim/)
 * [@traversaro](https://github.com/traversaro/)
 

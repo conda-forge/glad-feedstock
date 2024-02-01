@@ -1,35 +1,72 @@
-{% set name = "glad2" %}
 {% set version = "2.0.4" %}
 
 package:
-  name: {{ name }}
+  name: glad2
   version: {{ version }}
 
 source:
   url: https://github.com/Dav1dde/glad/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 02629644c242dcc27c58222bd2c001d5e2f3765dbbcfd796542308bddebab401
+  patches:
+    - 0001-cmake.patch
 
 build:
-  number: 0
-  entry_points:
-    - glad = glad.__main__:main
-  noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  number: 1
 
-requirements:
-  host:
-    - pip
-    - python >=3.6
-    - setuptools_scm
-  run:
-    - python >=3.6
-    - jinja2
+outputs:
+  - name: glad2
+    build:
+      noarch: python
+      skip: True  # [not linux64]
+      entry_points:
+        - glad = glad.__main__:main
+      script: python -m pip install . --no-deps -vv
 
-test:
-  imports:
-    - glad
-  commands:
-    - glad --help
+    requirements:
+      host:
+        - pip
+        - python >=3.8
+      run:
+        - python >=3.8
+        - jinja2
+
+    test:
+      imports:
+        - glad
+      commands:
+        - glad --help
+
+  - name: glad2-cmake
+    build:
+      skip: False
+
+    requirements:
+      # dummy build env to avoid EnvironmentLocationNotFound on win
+      build:     # [win]
+        - cmake  # [win]
+      run:
+        - {{ pin_subpackage('glad2', exact=True) }}
+
+    script: install_cmake.sh   # [unix]
+    script: install_cmake.bat  # [win]
+
+    test:
+      commands:
+        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                   # [unix]
+        - if not exist %LIBRARY_LIB%\\cmake\\Glad\\GladConfig.cmake exit 1  # [win]
+
+    about:
+      home: https://github.com/Dav1dde/glad
+      license: MIT
+      license_file: LICENSE
+      summary: CMake package for glad2.
+      description: |
+        Example of use:
+        ```cmake
+        find_package(Glad CONFIG REQUIRED)
+        glad_add_library(glad_gl_core_mx_33 REPRODUCIBLE MX API gl:core=3.3)
+        ```
+        and link `glad_gl_core_mx_33` to target
 
 about:
   home: https://github.com/Dav1dde/glad
