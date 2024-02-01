@@ -27,6 +27,7 @@ Example of use:
 find_package(Glad CONFIG REQUIRED)
 glad_add_library(glad_gl_core_mx_33 REPRODUCIBLE MX API gl:core=3.3)
 ```
+and link `glad_gl_core_mx_33` to target
 
 
 Current build status
