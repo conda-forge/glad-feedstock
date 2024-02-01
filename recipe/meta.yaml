@@ -29,8 +29,6 @@ outputs:
       run:
         - python >=3.8
         - jinja2
-      run_constrained:
-        - {{ pin_subpackage('glad2-cmake', exact=True) }}
 
     test:
       imports:
@@ -46,6 +44,8 @@ outputs:
       # dummy build env to avoid EnvironmentLocationNotFound on win
       build:     # [win]
         - cmake  # [win]
+      run:
+        - {{ pin_subpackage('glad2', exact=True) }}
 
     script: install_cmake.sh   # [unix]
     script: install_cmake.bat  # [win]
