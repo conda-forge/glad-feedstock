@@ -7,9 +7,6 @@ package:
 source:
   url: https://github.com/Dav1dde/glad/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 850351f1960f3fed775f0b696d7f17615f306beb56be38a20423284627626df1
-  patches:
-    - 0001-findpython.patch
-    - 0002-cmake.patch
 
 build:
   number: 0
@@ -52,9 +49,13 @@ outputs:
     script: install_cmake.bat  # [win]
 
     test:
+      files:
+        - CMakeLists.txt
+      requires:
+        - cmake
+        - ninja
       commands:
-        - test -f $PREFIX/lib/cmake/Glad/GladConfig.cmake                   # [unix]
-        - if not exist %LIBRARY_LIB%\\cmake\\Glad\\GladConfig.cmake exit 1  # [win]
+        - cmake -G Ninja -B b
 
     about:
       home: https://github.com/Dav1dde/glad
