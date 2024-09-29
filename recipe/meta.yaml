@@ -1,4 +1,4 @@
-{% set version = "2.0.5" %}
+{% set version = "2.0.8" %}
 
 package:
   name: glad2
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/Dav1dde/glad/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 850351f1960f3fed775f0b696d7f17615f306beb56be38a20423284627626df1
+  sha256: 44f06f9195427c7017f5028d0894f57eb216b0a8f7c4eda7ce883732aeb2d0fc
 
 build:
   number: 0
