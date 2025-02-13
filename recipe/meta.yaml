@@ -42,6 +42,9 @@ outputs:
   - name: glad2-cmake
     build:
       skip: false
+      script:
+        - install_cmake.sh  # [unix]
+        - install_cmake.bat  # [win]
 
     requirements:
       # dummy build env to avoid EnvironmentLocationNotFound on win
@@ -49,10 +52,6 @@ outputs:
         - cmake  # [win]
       run:
         - {{ pin_subpackage('glad2', exact=True) }}
-
-    script:
-      - install_cmake.sh  # [unix]
-      - install_cmake.bat  # [win]
 
     test:
       files:
