@@ -50,8 +50,9 @@ outputs:
       run:
         - {{ pin_subpackage('glad2', exact=True) }}
 
-    script: install_cmake.sh  # [unix]
-    script: install_cmake.bat  # [win]
+    script:
+      - install_cmake.sh  # [unix]
+      - install_cmake.bat  # [win]
 
     test:
       files:
