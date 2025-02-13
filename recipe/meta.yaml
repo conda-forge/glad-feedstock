@@ -43,8 +43,8 @@ outputs:
     build:
       skip: false
       script:
-        - install_cmake.sh  # [unix]
-        - install_cmake.bat  # [win]
+        - ${RECIPE_DIR}/install_cmake.sh  # [not win]
+        - "%RECIPE_DIR%\\install_cmake.bat"  # [win]
 
     requirements:
       # dummy build env to avoid EnvironmentLocationNotFound on win
