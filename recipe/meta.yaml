@@ -9,7 +9,7 @@ source:
   sha256: 44f06f9195427c7017f5028d0894f57eb216b0a8f7c4eda7ce883732aeb2d0fc
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: glad2
@@ -23,20 +23,28 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.8
+        - python {{ python_min }}
+        - setuptools
       run:
-        - python >=3.8
+        - python >={{ python_min }}
         - jinja2
 
     test:
+      requires:
+        - python {{ python_min }}
+        - pip
       imports:
         - glad
       commands:
         - glad --help
+        - pip check
 
   - name: glad2-cmake
     build:
       skip: false
+      script:
+        - ${RECIPE_DIR}/install_cmake.sh  # [not win]
+        - "%RECIPE_DIR%\\install_cmake.bat"  # [win]
 
     requirements:
       # dummy build env to avoid EnvironmentLocationNotFound on win
@@ -44,9 +52,6 @@ outputs:
         - cmake  # [win]
       run:
         - {{ pin_subpackage('glad2', exact=True) }}
-
-    script: install_cmake.sh  # [unix]
-    script: install_cmake.bat  # [win]
 
     test:
       files:
